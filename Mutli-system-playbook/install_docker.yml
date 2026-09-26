@@ -1,0 +1,13 @@
+- name: Install Docker on Ubuntu
+  hosts: servers
+  become: yes
+  roles:
+    - role: docker
+      docker_users:
+          - ubuntu
+          - ec2-user
+        
+      docker_service_enabled: true
+
+
+    
