@@ -107,7 +107,6 @@ One control node, one `docker` role, three OS families. `include_tasks` branches
 
 ![Ansible Multi-System Control Workflow](diagrams/ansible-multi-system-workflow.gif)
 
-A **combined version** of all workflows (for sharing on LinkedIn) is in [`linkedin/combined_workflow_diagram.png`](linkedin/combined_workflow_diagram.png).
 
 ---
 
