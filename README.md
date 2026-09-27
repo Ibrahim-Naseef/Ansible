@@ -96,17 +96,13 @@ How a playbook actually runs — control node parses the playbook and inventory,
 
 ![Ansible Playbook Execution Workflow](diagrams/ansible-playbook-workflow.gif)
 
-### 2. CI/CD Pipeline with Ansible (Jenkins-driven)
-Code → Build → Scan → Configure/Deploy with Ansible → Monitor.
 
-![CI/CD Ansible Pipeline](diagrams/02-cicd-ansible-pipeline.png)
-
-### 3. Terraform + Ansible Integration
+### 2. Terraform + Ansible Integration
 `terraform apply` provisions the control node and workers on AWS, `generate_inventory.tf` renders the bootstrap and runtime inventories, and Ansible takes over from there — one-time bootstrap from your laptop, then `ansible-playbook` run from the control node over private IPs.
 
 ![Terraform + Ansible Integration](diagrams/ansible-terraform-integration.gif)
 
-### 4. Multi-System Control Workflow
+### 3. Multi-System Control Workflow
 One control node, one `docker` role, three OS families. `include_tasks` branches by `ansible_distribution` (apt on Ubuntu, dnf on Amazon Linux, dnf + repo swap on RHEL), then converges on the same start/enable/verify steps across every host.
 
 ![Ansible Multi-System Control Workflow](diagrams/ansible-multi-system-workflow.gif)
