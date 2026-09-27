@@ -39,11 +39,18 @@ Ansible-Learning-Hub/
 ├── 06-handlers-and-notifications/ # Handlers, notify, triggers
 │   └── handlers-demo.yml
 │
-├── 07-multi-system-playbook/      # One playbook, multiple host groups/tiers
-│   ├── inventory/
-│   ├── webserver.yml
-│   ├── dbserver.yml
-│   └── site.yml
+├── 07-multi-system-playbook/      # One playbook, one role, Docker across Ubuntu/Amazon/RHEL
+│   ├── README.md
+│   ├── install_docker.yml
+│   └── roles/
+│       └── docker/                # OS-aware role (branches on ansible_distribution)
+│           ├── README.md
+│           ├── defaults/
+│           ├── handlers/
+│           ├── meta/
+│           ├── tasks/
+│           ├── tests/
+│           └── vars/
 │
 ├── 08-terraform-integration/      # Provision with Terraform, configure with Ansible
 │   ├── main.tf
@@ -83,7 +90,7 @@ Ansible-Learning-Hub/
 | 4 | `04-roles` | Breaking playbooks into reusable roles (Ansible Galaxy structure) |
 | 5 | `05-templates-jinja2` | Dynamic config files using Jinja2 templates |
 | 6 | `06-handlers-and-notifications` | Event-driven tasks with `notify` / `handlers` |
-| 7 | `07-multi-system-playbook` | Orchestrating web + DB tiers in one run |
+| 7 | `07-multi-system-playbook` | One role installing Docker across Ubuntu, Amazon Linux, and RHEL |
 | 8 | `08-terraform-integration` | Provision infra (Terraform) → configure it (Ansible) |
 | 9 | `09-real-world-projects` | Docker deployment & LAMP stack, start to finish |
 
