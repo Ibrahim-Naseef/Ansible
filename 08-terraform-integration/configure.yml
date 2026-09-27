@@ -1,0 +1,29 @@
+---
+- name: Configure the Terraform-provisioned instance
+  hosts: app
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: true
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Ensure Docker is running
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Deploy application container
+      community.docker.docker_container:
+        name: myapp
+        image: myorg/myapp:latest
+        state: started
+        ports:
+          - "80:8080"

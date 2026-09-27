@@ -1,0 +1,43 @@
+---
+- name: Provision a LAMP stack
+  hosts: webservers
+  become: true
+
+  vars:
+    mysql_root_password: "ChangeMe123!"
+    db_name: appdb
+
+  tasks:
+    - name: Install Apache, MySQL, PHP
+      apt:
+        name:
+          - apache2
+          - mysql-server
+          - php
+          - php-mysql
+          - libapache2-mod-php
+          - python3-pymysql
+        state: present
+        update_cache: true
+
+    - name: Start and enable Apache
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Start and enable MySQL
+      service:
+        name: mysql
+        state: started
+        enabled: true
+
+    - name: Create application database
+      community.mysql.mysql_db:
+        name: "{{ db_name }}"
+        state: present
+
+    - name: Deploy a sample PHP info page
+      copy:
+        content: "<?php phpinfo(); ?>"
+        dest: /var/www/html/info.php

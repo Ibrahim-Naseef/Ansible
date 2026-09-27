@@ -1,0 +1,13 @@
+server {
+    listen {{ nginx_port }};
+    server_name {{ inventory_hostname }};
+
+    root {{ doc_root }};
+    index index.html;
+
+    {% for path in blocked_paths %}
+    location {{ path }} {
+        deny all;
+    }
+    {% endfor %}
+}

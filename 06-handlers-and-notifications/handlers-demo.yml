@@ -1,0 +1,26 @@
+---
+- name: Handlers and notify demo
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Update nginx config
+      copy:
+        content: "# managed by ansible\n"
+        dest: /etc/nginx/conf.d/managed.conf
+      notify: Reload nginx
+
+    - name: Force handlers to run now instead of at the end
+      meta: flush_handlers
+
+    - name: Another change that also notifies
+      file:
+        path: /etc/nginx/conf.d/managed.conf
+        mode: "0644"
+      notify: Reload nginx
+
+  handlers:
+    - name: Reload nginx
+      service:
+        name: nginx
+        state: reloaded

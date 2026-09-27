@@ -1,9 +1,0 @@
-#SPDX-License-Identifier: MIT-0
----
-# handlers file for roles/docker
-- name: Start and enable Docker
-  service:
-    name: docker
-    state: started
-    enabled: "{{ docker_service_enabled }}"
-  become: yes

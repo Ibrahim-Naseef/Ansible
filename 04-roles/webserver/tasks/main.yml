@@ -1,0 +1,19 @@
+---
+- name: Install web server package
+  apt:
+    name: "{{ webserver_package }}"
+    state: present
+    update_cache: true
+  notify: Restart webserver
+
+- name: Deploy index page from template
+  template:
+    src: index.html.j2
+    dest: "{{ webserver_doc_root }}/index.html"
+  notify: Restart webserver
+
+- name: Ensure service is started and enabled
+  service:
+    name: "{{ webserver_package }}"
+    state: started
+    enabled: true

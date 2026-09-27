@@ -1,6 +1,0 @@
----
-- name: Install Docker (Debian/Ubuntu)
-  dnf:
-    name: docker
-    state: present
-  become: true

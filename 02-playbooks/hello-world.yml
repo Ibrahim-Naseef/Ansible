@@ -1,0 +1,9 @@
+---
+- name: My First Ansible Playbook
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Print a friendly message
+      debug:
+        msg: "Hello from {{ inventory_hostname }}! Ansible is working."

@@ -1,0 +1,25 @@
+---
+- name: Install and start Nginx on web servers
+  hosts: webservers
+  become: true
+
+  vars:
+    nginx_port: 80
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: true
+
+    - name: Ensure nginx is running and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Deploy a simple index page
+      copy:
+        content: "<h1>Deployed by Ansible on {{ inventory_hostname }}</h1>"
+        dest: /var/www/html/index.html

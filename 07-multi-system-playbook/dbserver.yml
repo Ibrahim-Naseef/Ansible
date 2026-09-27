@@ -1,0 +1,17 @@
+---
+- name: Configure database tier
+  hosts: dbservers
+  become: true
+
+  tasks:
+    - name: Install postgresql
+      apt:
+        name: postgresql
+        state: present
+        update_cache: true
+
+    - name: Start postgresql
+      service:
+        name: postgresql
+        state: started
+        enabled: true

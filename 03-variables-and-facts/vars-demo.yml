@@ -1,0 +1,24 @@
+---
+- name: Demonstrate variables and facts
+  hosts: webservers
+  gather_facts: true
+
+  vars:
+    play_level_var: "set in the play"
+
+  tasks:
+    - name: Show a group_vars value
+      debug:
+        var: http_port
+
+    - name: Show a host_vars value (overridden per host)
+      debug:
+        var: app_env
+
+    - name: Show a fact gathered from the system
+      debug:
+        msg: "OS family is {{ ansible_facts['os_family'] }}, IP is {{ ansible_facts['default_ipv4']['address'] | default('n/a') }}"
+
+    - name: Show play-level variable
+      debug:
+        var: play_level_var
