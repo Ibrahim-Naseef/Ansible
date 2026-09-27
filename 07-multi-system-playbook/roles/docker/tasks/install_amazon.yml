@@ -1,0 +1,6 @@
+---
+- name: Install Docker on Amazon Linux
+  dnf:
+    name: docker
+    state: present
+  become: true

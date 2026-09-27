@@ -1,0 +1,11 @@
+---
+- name: Install Docker on multiple Linux distributions
+  hosts: servers
+  become: true
+
+  roles:
+    - role: docker
+      docker_users:
+        - ubuntu
+        - ec2-user
+      docker_service_enabled: true

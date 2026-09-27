@@ -1,0 +1,16 @@
+#SPDX-License-Identifier: MIT-0
+---
+galaxy_info:
+  author: Ibrahim Naseef
+  description: Install and configure Docker across multiple Linux distributions
+  license: MIT
+  min_ansible_version: "2.9"
+  galaxy_tags:
+    - docker
+    - linux
+    - ubuntu
+    - amazonlinux
+    - redhat
+    - containers
+
+dependencies: []
